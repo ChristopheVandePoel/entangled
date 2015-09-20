@@ -19,6 +19,15 @@ var Core;
             this._ctx = ctx;
             this._determineCrossing = crossing;
         }
+        World.prototype.empty = function () {
+            this._timeStarted = false;
+            this._movableWorldObjects = [];
+            this._notMovableWorldObjects = [];
+            this._beginTime = 0;
+            this._tickInterval = 0;
+            this._timeScale = 1;
+            this._timeBase = 150;
+        };
         World.prototype.createImmovableObject = function (notMovable) {
             this._notMovableWorldObjects.push(notMovable);
         };
@@ -93,7 +102,7 @@ var Core;
                         }
                         if (hitBreak) {
                             movObject.ignore = true;
-                            setTimeout(function () { movObject.ignore = false; }, _this._tickInterval + 5);
+                            setTimeout(function () { movObject.ignore = false; }, _this._tickInterval * 2);
                             break;
                         }
                     }

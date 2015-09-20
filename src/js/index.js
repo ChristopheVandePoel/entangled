@@ -6,10 +6,18 @@ function init() {
     var canvas = document.createElement("canvas");
     canvas.width = 1000;
     canvas.height = 750;
-    canvas.style.border = "1px solid black";
-    document.getElementById("app").appendChild(canvas);
     var ctx = canvas.getContext("2d");
     var world = new Core.World(ctx, Utils.determineCrossing);
+    canvas.style.border = "1px solid black";
+    document.getElementById("app").appendChild(canvas);
+    loadWorld(world);
+    setInterval(function () {
+        world.empty();
+        world.stopTime();
+        loadWorld(world);
+    }, 3000);
+}
+function loadWorld(world) {
     world.createMovableObject(new Core.Rectangle(150, 150, 20, 30, 25, -20));
     world.createMovableObject(new Core.Rectangle(480, 250, 10, 40, 30, -10));
     world.createMovableObject(new Core.Rectangle(480, 250, 10, 40, -30, -10));
@@ -20,12 +28,7 @@ function init() {
     world.createImmovableObject(new Core.Immovable(900, 375, 100, 1000));
     world.renderObjects();
     world.start();
-    setTimeout(function () {
-        world.startTime();
-    }, 500);
-    setTimeout(function () {
-        world.stopTime();
-    }, 5000);
+    world.startTime();
 }
 init();
 //# sourceMappingURL=index.js.map
