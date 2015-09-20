@@ -10,6 +10,7 @@ module Utils {
             onLine2: false
         };
         denominator = ((line2EndY - line2StartY) * (line1EndX - line1StartX)) - ((line2EndX - line2StartX) * (line1EndY - line1StartY));
+
         if (denominator == 0) {
             return result;
         }
@@ -37,6 +38,8 @@ module Utils {
             result.onLine2 = true;
         }
         // if line1 and line2 are segments, they intersect if both of the above are true
+        //console.log(result);
+
         return result;
     }
 }

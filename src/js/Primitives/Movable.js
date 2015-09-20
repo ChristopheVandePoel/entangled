@@ -12,6 +12,7 @@ var Core;
             if (vx === void 0) { vx = 0; }
             if (vy === void 0) { vy = 0; }
             if (rot === void 0) { rot = 0; }
+            this.ignore = false;
             this.x = x;
             this.y = y;
             this.w = w;

@@ -36,6 +36,7 @@ var Utils;
             result.onLine2 = true;
         }
         // if line1 and line2 are segments, they intersect if both of the above are true
+        //console.log(result);
         return result;
     }
     Utils.determineCrossing = determineCrossing;

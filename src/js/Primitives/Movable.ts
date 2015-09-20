@@ -14,6 +14,7 @@ module Core {
         public rot:number;
         public vertices: Array<Object>;
         private _vectors: Vectors;
+        public ignore:boolean = false;
 
         constructor(x:number, y:number, w:number, h:number, vx:number = 0, vy:number = 0, rot:number = 0) {
             this.x = x;

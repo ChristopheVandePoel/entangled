@@ -16,7 +16,7 @@ module Core {
 
         public createVertices() {
             let result = [];
-
+            //needs refactoring to vector in stead of just points
             result.push([this.x - this.w/2 ,this.y - this.h/2]);
             result.push([this.x + this.w/2 ,this.y - this.h/2]);
             result.push([this.x + this.w/2 ,this.y + this.h/2]);

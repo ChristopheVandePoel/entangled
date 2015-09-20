@@ -25,7 +25,7 @@ function init() {
     }, 500);
     setTimeout(function () {
         world.stopTime();
-    }, 2000);
+    }, 5000);
 }
 init();
 //# sourceMappingURL=index.js.map

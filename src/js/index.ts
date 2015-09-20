@@ -19,7 +19,6 @@ function init() {
     world.createMovableObject(new Core.Rectangle(480,250,10,40,-30,-10));
     world.createMovableObject(new Core.Rectangle(250,50,20,30,30,-15));
 
-
     world.createImmovableObject(new Core.Immovable(400,600,500,40));
     world.createImmovableObject(new Core.Immovable(200,400,250,40));
     world.createImmovableObject(new Core.Immovable(600,400,250,40));
@@ -33,7 +32,7 @@ function init() {
 
     setTimeout(() => {
         world.stopTime();
-    }, 2000);
+    }, 5000);
 }
 
 init();

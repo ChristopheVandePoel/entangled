@@ -68,7 +68,36 @@ var Core;
             this.renderObjects();
         };
         World.prototype.detectStaticHit = function (movObject) {
+            var _this = this;
             this._notMovableWorldObjects.forEach(function (staticObject) {
+                //first try with just points
+                var movVertices = movObject.vertices;
+                var staticVertices = staticObject.vertices;
+                var hit = false;
+                var i = 0;
+                var j = 0;
+                var u = 0;
+                var hitBreak = false;
+                if (!movObject.ignore) {
+                    for (i = 0; i < movVertices.length; i++) {
+                        j = (i + 1) % movVertices.length;
+                        for (u = 0; u < staticVertices.length; u++) {
+                            var w = (u + 1) % staticVertices.length;
+                            var checkHit = _this._determineCrossing(movVertices[i][0], movVertices[i][1], movVertices[j][0], movVertices[j][1], staticVertices[u][0], staticVertices[u][1], staticVertices[w][0], staticVertices[w][1]);
+                            if (checkHit.onLine1 && checkHit.onLine2) {
+                                movObject.vy = -0.75 * movObject.vy;
+                                //console.log('HIT! ', movObject);
+                                hitBreak = true;
+                                break;
+                            }
+                        }
+                        if (hitBreak) {
+                            movObject.ignore = true;
+                            setTimeout(function () { movObject.ignore = false; }, _this._tickInterval + 5);
+                            break;
+                        }
+                    }
+                }
             });
         };
         World.prototype.stopTime = function () {
