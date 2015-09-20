@@ -92,7 +92,7 @@ module Core {
                 object.moveCoordinates(t);
 
                 this.detectStaticHit(object);
-                console.log(object.center);
+                //console.log(object.vertices);
             });
 
 
@@ -101,26 +101,7 @@ module Core {
 
         public detectStaticHit(movObject: Movable) {
             this._notMovableWorldObjects.forEach((staticObject) => {
-                if (movObject instanceof Rectangle) {
-                    let isOnplaneHeight = ((movObject.y + movObject.h >= staticObject.y) && (movObject.y < staticObject.y));
-                    let hitsBottom = (movObject.x < staticObject.x + staticObject.w) && (movObject.x + movObject.w) > staticObject.x;
-                    if(isOnplaneHeight && hitsBottom){
-                        //console.log('hit!');
 
-                        let newYv = -(movObject.vy)/(1.7);
-                        movObject.y = staticObject.y - movObject.h;
-
-                        if (Math.abs(-(movObject.vy)/(1.7)) < 3) {
-                            newYv = 0;
-                        }
-
-                        let newXv = (-(movObject.vx)/(1.7));
-                        //console.log('speed: ', newYv);
-
-                        movObject.vy = newYv;
-                        movObject.vx = ((movObject.vx)/(1.7));
-                    }
-                }
             })
         }
 
@@ -139,12 +120,42 @@ module Core {
         public renderObjects() {
             this._ctx.clearRect(0,0,1000,750);
             this._notMovableWorldObjects.forEach((object) => {
-                this._ctx.fillStyle = "#FF0500";
-                this._ctx.fillRect(object.x,object.y,object.w,object.h);
+                let ctx = this._ctx;
+
+                // to be refactored
+                ctx.beginPath();
+                let startPoint = object.vertices[0];
+                let that = this;
+                ctx.moveTo(startPoint[0], startPoint[1]);
+                object.vertices.forEach((coords, i) => {
+                    if (i !== 0) {
+                        ctx.lineTo(coords[0], coords[1]);
+                    }
+                }, ctx);
+                ctx.lineTo(startPoint[0], startPoint[1]);
+                ctx.stroke();
+
+                ctx.fillStyle = ("black");
             });
             this._movableWorldObjects.forEach((object) => {
-                this._ctx.fillStyle = "#AF0500";
-                this._ctx.fillRect(object.x,object.y,object.w,object.h);
+                let ctx = this._ctx;
+
+                // to be refactored
+                ctx.beginPath();
+                let startPoint = object.vertices[0];
+                let that = this;
+                ctx.moveTo(startPoint[0], startPoint[1]);
+                object.vertices.forEach((coords, i) => {
+                    if (i !== 0) {
+                        ctx.lineTo(coords[0], coords[1]);
+                    }
+                }, ctx);
+                ctx.lineTo(startPoint[0], startPoint[1]);
+                ctx.stroke();
+
+                ctx.fillStyle = ("black");
+                ctx.fillRect(object.center[0]-1, object.center[1]-1, 3, 3);
+
             });
         }
 
