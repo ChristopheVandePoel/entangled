@@ -1,0 +1,22 @@
+{
+  "name": "entangled",
+  "version": "0.0.1",
+  "description": "Just a push to see if Microsoft goofed",
+  "main": "./src/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristopheVandePoel/entangled.git"
+  },
+  "keywords": [
+    "entangled"
+  ],
+  "author": "Christophe Van de Poel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ChristopheVandePoel/entangled/issues"
+  },
+  "homepage": "https://github.com/ChristopheVandePoel/entangled#readme"
+}
