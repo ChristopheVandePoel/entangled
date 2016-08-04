@@ -1,6 +1,6 @@
 {
   "name": "entangled",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Just a push to see if Microsoft goofed",
   "main": "./src/js/index.js",
   "scripts": {
